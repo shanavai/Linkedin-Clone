@@ -3,8 +3,18 @@ import Login from "./components/Login";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Home from "./components/Home";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getUserAuth } from "./actions"; 
+ 
+function App(props) {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.userState.user);
+ 
+  useEffect(()=>{
+    dispatch(getUserAuth()) 
+  }, []);
 
-function App() {
   return (
     <div className="App">
       <BrowserRouter>

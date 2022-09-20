@@ -1,11 +1,16 @@
+import { useSelector } from "react-redux";
 import styled from "styled-components"; 
 import Leftside from "./LeftSide";
 import Main from "./Main";
-import Rightside from "./RightSide";
+import Rightside from "./RightSide"; 
+import { useNavigate } from 'react-router-dom'; 
 
 const Home = () => {
+  const user = useSelector((state) => state.userState.user);
+  const navigate = useNavigate();
   return (
     <Container>
+      {!user && navigate('/')}
       <Section>
         <h5>
           <a>Hiring in a hurry? -   </a>

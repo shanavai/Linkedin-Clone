@@ -1,9 +1,21 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components'; 
+import { useDispatch, useSelector } from 'react-redux';
+import { signInAPI } from '../actions';
+import { useNavigate } from 'react-router-dom'; 
+ 
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.userState.user);
+  console.log('usessssssssr', user)
   return ( 
     <Container>
+      {
+        user&&
+        navigate("/home") 
+      } 
         <Nav>
              <a href='/'>
                 <img src='/images/login-logo.svg'/> 
@@ -19,7 +31,9 @@ const Login = () => {
             <img src='/images/login-hero.svg' alt='login-hero'/>
           </Hero>
           <Form>
-            <Google>
+            <Google 
+            onClick={()=> dispatch(signInAPI())} 
+            >
               <img src='/images/google.svg' alt='google logo'/>
               Sign in with Google
             </Google>
