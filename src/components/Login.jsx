@@ -3,13 +3,13 @@ import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { signInAPI } from '../actions';
 import { useNavigate } from 'react-router-dom'; 
- 
+
 
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.userState.user);
-  console.log('usessssssssr', user)
+
   return ( 
     <Container>
       {
