@@ -248,14 +248,7 @@ const User = styled(NavList)`
   span {
     display: flex;
     align-items: center;
-  }
-  &:hover {
-    ${SignOut} {
-      align-items: center;
-      display: flex;
-      justify-content: center;
-    }
-  }
+  } 
 `;
 
 const Work = styled(User)`

@@ -12,8 +12,10 @@ const PostModal = (props) => {
   const [assetArea, setassetArea] = useState("");
   const user = useSelector((state) => state.userState.user);
   const dispatch = useDispatch();
-  
 
+  console.log('text', textEditor)
+  console.log('image', shareImage)
+   
   const postArticle = (e) => {
     e.preventDefault();
     if (e.target !== e.currentTarget) {
@@ -125,15 +127,9 @@ const PostModal = (props) => {
                 <AssetButton onClick={()=>switchAssetArea("media")}>
                   <img src="images/video-icon.svg" alt="share" />
                 </AssetButton>
-              </AttachAssets>
-              <SharedComment>
-                <AssetButton>
-                  <img src="/images/share-comment.svg " alt="" />
-                  Anyone
-                </AssetButton>
-              </SharedComment>
+              </AttachAssets> 
               <PostButton 
-              disabled={textEditor.trim().length < 1 ? true : false} 
+              disabled={ shareImage.length < 8 && videoLink.length < 5 ? true : false} 
               onClick={(event) => postArticle(event)}
               >
                 Post
@@ -235,9 +231,9 @@ const AssetButton = styled.div`
   height: 40px;
   min-width: auto;
   color: rgba(0, 0, 0, 0.5);
-  border: 1px solid #c1c1c1;
+  border: none;
   background-color: white;
-  padding-left: 8px;
+  padding-left: 14px;
 `;
 
 const AttachAssets = styled.div`
@@ -246,22 +242,11 @@ const AttachAssets = styled.div`
   padding-right: 8px;
   ${AssetButton} {
     width: 34px;
+    display: flex;
+    margin-right: 10px; 
   }
 `;
 
-const SharedComment = styled.div`
-  padding-left: 8px;
-  margin-right: auto;
-  border-left: 1px solid rgba(0, 0, 0, 0.15);
-  ${AssetButton} {
-    padding-right: 8px;
-    svg,
-    img {
-      margin-right: 5px;
-      align-items: center;
-    }
-  }
-`;
 const PostButton = styled.button`
   min-width: 60px;
   border-radius: 20px;

@@ -19,11 +19,7 @@ const Login = () => {
         <Nav>
              <a href='/'>
                 <img src='/images/login-logo.svg'/> 
-            </a> 
-            <div>
-                <Join>Join now</Join>
-                <SignIn>Sign in</SignIn>
-            </div>
+            </a>  
         </Nav>
         <Section>
           <Hero>
@@ -156,6 +152,7 @@ const Form = styled.div`
 `;
 
 const Google = styled.button`
+  cursor: pointer;  
   display: flex;
   justify-content: center;
   background-color: #fff;

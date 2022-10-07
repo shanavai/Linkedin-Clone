@@ -36,55 +36,38 @@ const Main = () => {
   };
 
   return (
-    <> <Container>
-          <ShareBox>
-            <div>
-              {user && user.photoURL ? (
-                <img src={user.photoURL} alt="" />
-              ) : (
-                <img src="/images/user.svg" alt="" />
-              )}
-              <button onClick={handleClick} disabled={loading ? true : false}>
-                Start a post
-              </button>
-            </div>
-            <div>
-              <button>
-                <img src="/images/photo-icon.svg" alt="" />
-                <span>Photo</span>
-              </button>
-
-              <button>
-                <img src="/images/video-icon.svg" alt="" />
-                <span>Video</span>
-              </button>
-
-              <button>
-                <img src="/images/event-icon.svg" alt="" />
-                <span>Event</span>
-              </button>
-
-              <button>
-                <img src="/images/article-icon.svg" alt="" />
-                <span>Write article</span>
-              </button>
-            </div>
-          </ShareBox>
-          {loading && <img src="/images/spinner.gif" alt="" />}
-          {posts.length === 0 ? (
-        <p>There are no Articles</p>
-         ) : (
-          <Content> 
+    <>
+      {" "}
+      <Container>
+        <ShareBox>
+          <div>
+            {user && user.photoURL ? (
+              <img src={user.photoURL} alt="" />
+            ) : (
+              <img src="/images/user.svg" alt="" />
+            )}
+            <button onClick={handleClick} disabled={loading ? true : false}>
+              Start a post
+            </button>
+          </div> 
+        </ShareBox> 
+        
+        {posts.length === 0 ? (
+          <p>There are no Articles</p>
+        ) : (
+          <Content>
             {posts.length > 0 &&
               posts.map((post, key) => (
                 <Article key={key}>
                   <SharedActor>
                     <a>
-                      <img src={post.actor.image}alt="" />
+                      <img src={post.actor.image} alt="" />
                       <div>
                         <span>{post.actor.title}</span>
                         <span>{post.actor.description}</span>
-                        <span>{post.actor.date.toDate().toLocaleDateString()}</span>
+                        <span>
+                          {post.actor.date.toDate().toLocaleDateString()}
+                        </span>
                       </div>
                     </a>
                     <button>
@@ -93,11 +76,11 @@ const Main = () => {
                   </SharedActor>
                   <Description>{post.description}</Description>
                   <SharedImg>
-                    <a> 
-                      {
-                        !post.sharedImg && post.video ? <ReactPlayer width={'100%'} url={post.video}/>
-                      :(
-                        post.sharedImg && <img src={post.sharedImg} alt=""/>
+                    <a>
+                      {!post.sharedImg && post.video ? (
+                        <ReactPlayer width={"100%"} url={post.video} />
+                      ) : (
+                        post.sharedImg && <img src={post.sharedImg} alt="" />
                       )}
                     </a>
                   </SharedImg>
@@ -105,12 +88,9 @@ const Main = () => {
                     <li>
                       <button>
                         <img src="/images/clap.svg" alt="Clapping emoji" />
-                        <span>75</span>
+                        <span>1</span>
                       </button>
-                    </li>
-                    <li>
-                      <a>{post.comments}</a>
-                    </li>
+                    </li> 
                   </SocialCounts>
                   <SocialActions>
                     <p>
@@ -141,9 +121,9 @@ const Main = () => {
                 </Article>
               ))}
           </Content>
-          )}
-          <PostModal showModal={showModal} handleClick={handleClick} />
-        </Container>
+        )}
+        <PostModal showModal={showModal} handleClick={handleClick} />
+      </Container>
     </>
   );
 };
@@ -168,14 +148,15 @@ const ShareBox = styled(CommonCard)`
   flex-direction: column;
   color: #958b7b;
   margin: 0 0 8px;
-  background: white;
+  background: white; 
+  padding: 15px;
   div {
     button {
       outline: none;
       color: rgba(0, 0, 0, 0.6);
       font-size: 14px;
       line-height: 1.5;
-      min-height: 48px;
+      min-height: 60px;
       background: transparent;
       border: none;
       display: flex;
@@ -199,22 +180,6 @@ const ShareBox = styled(CommonCard)`
         border-radius: 35px;
         background-color: white;
         text-align: left;
-      }
-    }
-    &:nth-child(2) {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-      padding-bottom: 4px;
-
-      button {
-        img {
-          margin: 0 4px 0 -2px;
-          width: 30px;
-        }
-        span {
-          color: #70b5f9;
-        }
       }
     }
   }
@@ -300,7 +265,7 @@ const SharedImg = styled.div`
 const SocialCounts = styled.ul`
   line-height: 1.3;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   overflow: auto;
   margin: 0 16px;
   padding: 8px 0;
@@ -343,7 +308,7 @@ const SocialActions = styled.div`
       span {
         margin-left: 8px;
       }
-    }
+    }loading
   }
   span {
     color: #0a66c2;
